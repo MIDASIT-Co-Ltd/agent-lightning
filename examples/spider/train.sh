@@ -2,12 +2,15 @@
 
 set -e
 
-export N_GPUS=1
-export BASE_MODEL=Qwen/Qwen2.5-Coder-1.5B-Instruct
-export DATA_DIR=data
-export ROLLOUT_TP_SIZE=1
-export EXPERIMENT_NAME=spider
-export PROJECT_NAME=AgentLightning
+# Allow overriding via env vars when invoking the script, e.g.:
+#   N_GPUS=4 BASE_MODEL=meta-llama/Llama-3.2-3B-Instruct bash train.sh
+# Defaults only applied if not already set.
+export N_GPUS="${N_GPUS:-2}"
+export BASE_MODEL="${BASE_MODEL:-Qwen/Qwen2.5-Coder-1.5B-Instruct}"
+export DATA_DIR="${DATA_DIR:-data}"
+export ROLLOUT_TP_SIZE="${ROLLOUT_TP_SIZE:-1}"
+export EXPERIMENT_NAME="${EXPERIMENT_NAME:-spider}"
+export PROJECT_NAME="${PROJECT_NAME:-AgentLightning}"
 
 echo "Starting training script..."
 

@@ -14,6 +14,7 @@ dependencies = [
   "uvicorn",
   "fastapi",
   "aiohttp",
+  "gdown>=5.2.0",
 ]
 
 [project.optional-dependencies]
@@ -50,6 +51,23 @@ agent = [
   "nltk",
   "uv",
 ]
+train = [
+  # Core deep learning stack (GPU wheels: adjust index-url when installing)
+  "torch==2.7.0",
+  "torchvision==0.22.0",
+  "torchaudio==2.7.0",
+  # High-performance attention kernels (build from source if wheel not available)
+  "flash-attn",
+  # Inference engine
+  "vllm==0.9.2",
+  # VERL for RL training
+  "verl==0.5.0",
+  # Ray for distributed coordination used in verl entrypoints
+  "ray[default]",
+]
+
+[tool.uv.extra-build-dependencies]
+"flash-attn" = ["torch==2.7.0"]
 
 [build-system]
 requires = ["hatchling"]
